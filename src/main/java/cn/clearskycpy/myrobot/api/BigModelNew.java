@@ -39,7 +39,6 @@ public class BigModelNew extends WebSocketListener {
         String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
         String url = authUrl.toString().replace("http://", "ws://").replace("https://", "wss://");
         OkHttpClient client = new OkHttpClient.Builder().build();
-
         Request request = new Request.Builder().url(url).build();
         // 个性化参数入口，如果是并发使用，可以在这里模拟
         for (int i = 0; i < 1; i++) {

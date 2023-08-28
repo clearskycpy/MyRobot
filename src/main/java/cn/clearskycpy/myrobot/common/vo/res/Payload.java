@@ -1,4 +1,4 @@
-package cn.clearskycpy.myrobot.common.vo;
+package cn.clearskycpy.myrobot.common.vo.res;
 
 /**
  * @description:

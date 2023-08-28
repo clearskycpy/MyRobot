@@ -1,4 +1,4 @@
-package cn.clearskycpy.myrobot.common.vo;
+package cn.clearskycpy.myrobot.common.vo.req;
 
 import lombok.Data;
 
@@ -10,7 +10,6 @@ import lombok.Data;
  */
 @Data
 public class Header {
-    private int code;
-    private int status;
-    private String sid;
+    private String app_id;
+    private String uid;
 }

@@ -1,16 +1,17 @@
-package cn.clearskycpy.myrobot.common.vo;
-
-import lombok.Data;
-import lombok.Generated;
+package cn.clearskycpy.myrobot.common.vo.req;
 
 /**
- * @description:
+ * @description:  请求对象
  * @author：ClearSky
  * @date: 2023/8/25/025
  * @Copyright： https://clearskycpy.cn
  */
+
+import lombok.Data;
+
 @Data
-public class JsonParse {
+public class ReqJson {
     private Header header;
+    private Parameter parameter;
     private Payload payload;
 }

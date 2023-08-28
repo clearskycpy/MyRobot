@@ -1,4 +1,6 @@
-package cn.clearskycpy.myrobot.common.vo;
+package cn.clearskycpy.myrobot.common.vo.req;
+
+import lombok.Data;
 
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  * @date: 2023/8/25/025
  * @Copyright： https://clearskycpy.cn
  */
-public class Choices {
+@Data
+public class Message {
     private List<Text> text;
 }

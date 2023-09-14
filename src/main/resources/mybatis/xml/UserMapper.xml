@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.clearskycpy.myrobot.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.clearskycpy.myrobot.common.po.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="u_id" property="uId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="user_type" property="userType" jdbcType="TINYINT" />
+    <result column="message_cnt" property="messageCnt" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.clearskycpy.myrobot.common.po.User" >
+    insert into user (id, u_id, user_name, 
+      phone, password, state, 
+      user_type, message_cnt, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
+      #{userType,jdbcType=TINYINT}, #{messageCnt,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.clearskycpy.myrobot.common.po.User" >
+    update user
+    set u_id = #{uId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      user_type = #{userType,jdbcType=TINYINT},
+      message_cnt = #{messageCnt,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, u_id, user_name, phone, password, state, user_type, message_cnt, create_time, 
+    update_time
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, u_id, user_name, phone, password, state, user_type, message_cnt, create_time, 
+    update_time
+    from user
+  </select>
+</mapper>

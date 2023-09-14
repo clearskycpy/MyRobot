@@ -7,6 +7,7 @@ import okhttp3.Request;
 import okhttp3.WebSocket;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.crypto.Mac;
@@ -44,7 +45,7 @@ public class MyUrlSource {
      * @return
      * @throws Exception
      */
-    private  String getAuthUrl() throws Exception {
+    public  String getAuthUrl() throws Exception {
         URL url = new URL(hostUrl);
         // 时间
         SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
@@ -74,11 +75,7 @@ public class MyUrlSource {
                 build();
 
         // System.err.println(httpUrl.toString());
-        return httpUrl.toString();
-    }
-
-    public String getUrl() throws Exception {
-        return getAuthUrl().toString().replace("http://", "ws://").replace("https://", "wss://");
+        return httpUrl.toString().toString().replace("http://", "ws://").replace("https://", "wss://");
     }
 
 }

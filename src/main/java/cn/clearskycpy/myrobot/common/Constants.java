@@ -40,4 +40,26 @@ public class Constants {
         }
 
     }
+
+    public enum WriteState {
+//        writing
+        WRITING(false, "写入中"),
+//      Written
+        WRITTEN(true, "已写完");
+
+        private boolean writeState;
+        private String msg;
+
+        WriteState(boolean writeState, String msg) {
+            this.writeState = writeState;
+            this.msg = msg;
+        }
+
+        public boolean getWriteState() {
+            return writeState;
+        }
+        public String getMsg() {
+            return msg;
+        }
+    }
 }

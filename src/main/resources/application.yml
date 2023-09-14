@@ -1,0 +1,13 @@
+# 讯飞
+XF-data:
+  hostUrl: https://spark-api.xf-yun.com/v1.1/chat
+  appid: adecb169
+  apiSecret: MThhZjZjYzU2Mzg5MWNjYjRhZWEyMWFk
+  apiKey: 01b86b19dfd8c83be87418e7b42de780
+
+# mybatis配置
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location:  classpath:/mybatis/config/mybatis-config.xml
+

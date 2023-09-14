@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.clearskycpy.myrobot.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="cn.clearskycpy.myrobot.common.po.Message" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="u_id" property="uId" jdbcType="BIGINT" />
+    <result column="message_id" property="messageId" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="message_question" property="messageQuestion" jdbcType="LONGVARCHAR" />
+    <result column="message_answer" property="messageAnswer" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.clearskycpy.myrobot.common.po.Message" >
+    insert into message (id, u_id, message_id, 
+      session_id, create_time, update_time, 
+      message_question, message_answer)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{messageId,jdbcType=INTEGER}, 
+      #{sessionId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{messageQuestion,jdbcType=LONGVARCHAR}, #{messageAnswer,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.clearskycpy.myrobot.common.po.Message" >
+    update message
+    set u_id = #{uId,jdbcType=BIGINT},
+      message_id = #{messageId,jdbcType=INTEGER},
+      session_id = #{sessionId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      message_question = #{messageQuestion,jdbcType=LONGVARCHAR},
+      message_answer = #{messageAnswer,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, u_id, message_id, session_id, create_time, update_time, message_question, 
+    message_answer
+    from message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, u_id, message_id, session_id, create_time, update_time, message_question, 
+    message_answer
+    from message
+  </select>
+</mapper>

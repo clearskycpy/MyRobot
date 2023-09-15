@@ -1,8 +1,15 @@
 package cn.clearskycpy.myrobot.common.po;
 
+
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private Long uId;

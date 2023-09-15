@@ -15,14 +15,6 @@
     delete from message
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="cn.clearskycpy.myrobot.common.po.Message" >
-    insert into message (id, u_id, message_id, 
-      session_id, create_time, update_time, 
-      message_question, message_answer)
-    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{messageId,jdbcType=INTEGER}, 
-      #{sessionId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{messageQuestion,jdbcType=LONGVARCHAR}, #{messageAnswer,jdbcType=LONGVARCHAR})
-  </insert>
   <update id="updateByPrimaryKey" parameterType="cn.clearskycpy.myrobot.common.po.Message" >
     update message
     set u_id = #{uId,jdbcType=BIGINT},

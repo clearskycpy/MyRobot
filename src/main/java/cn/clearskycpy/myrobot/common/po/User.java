@@ -1,8 +1,13 @@
 package cn.clearskycpy.myrobot.common.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private Long uId;
@@ -13,9 +18,9 @@ public class User {
 
     private String password;
 
-    private Byte state;
+    private Integer state;
 
-    private Byte userType;
+    private Integer userType;
 
     private Integer messageCnt;
 
@@ -63,19 +68,19 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
-    public Byte getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(Byte userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 

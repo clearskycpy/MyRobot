@@ -1,16 +1,12 @@
 package cn.clearskycpy.myrobot.mapper;
 
 import cn.clearskycpy.myrobot.common.po.User;
-import java.util.List;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
-
-    int insert(User record);
-
-    User selectByPrimaryKey(Long id);
-
-    List<User> selectAll();
-
-    int updateByPrimaryKey(User record);
+/**
+ * @author clearSky
+ */
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
 }

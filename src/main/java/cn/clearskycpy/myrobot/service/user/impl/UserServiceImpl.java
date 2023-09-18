@@ -8,6 +8,7 @@ import cn.clearskycpy.myrobot.common.utils.MD5Utils;
 import cn.clearskycpy.myrobot.mapper.UserMapper;
 import cn.clearskycpy.myrobot.service.user.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,24 +32,43 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Resource
     Map<Constants.Ids, IIdGenerator> idGeneratorMap;
 
+    /**
+     * 切换用户状态
+     * @param targetUserState  目标状态
+     * @return
+     */
     @Override
-    public boolean switchUserState(Constants.UserState targetUserState) {
-        return false;
+    public UserResDto switchUserState(Constants.UserState targetUserState, Long uId) {
+        LambdaUpdateWrapper<User> userLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        userLambdaUpdateWrapper.set(User::getState,targetUserState.getCode()).eq(User::getuId, uId);
+        userMapper.update(null, userLambdaUpdateWrapper);
+        return new UserResDto(true);
     }
+
 
     @Override
     public void update(User user) {
-
+        LambdaUpdateWrapper<User> userUpdateWrapper = new LambdaUpdateWrapper<>();
+        userUpdateWrapper.eq(User::getuId, user.getuId());
+        userMapper.update(user,userUpdateWrapper);
     }
 
     @Override
     public Integer queryMessageCntByUId(Long uId) {
-        return null;
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getuId, uId);
+        return userMapper.selectOne(queryWrapper).getMessageCnt();
     }
 
     @Override
     public void consumptionMessage(Long uId) {
-
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getuId, uId);
+        User user = userMapper.selectOne(queryWrapper);
+        user.setMessageCnt(user.getMessageCnt() - 1);
+//        int i = 1/0;
+        userMapper.update(user,queryWrapper);
+        return ;
     }
 
     /**

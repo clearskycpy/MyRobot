@@ -12,4 +12,12 @@ import lombok.Data;
 public class Text {
     private String role;
     private String content;
+
+    public Text(String role, String content) {
+        this.role = role;
+        this.content = content;
+    }
+
+    public Text() {
+    }
 }

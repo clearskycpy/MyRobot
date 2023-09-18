@@ -12,14 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BigModelNew extends WebSocketListener {
-    // 地址与鉴权信息
-    public static final String hostUrl = "https://spark-api.xf-yun.com/v1.1/chat";
-    public static final String appid = "adecb169";
-    public static final String apiSecret = "MThhZjZjYzU2Mzg5MWNjYjRhZWEyMWFk";
-    public static final String apiKey = "01b86b19dfd8c83be87418e7b42de780";
+    /*// 地址与鉴权信息
+    public static final String hostUrl = "";
+    public static final String appid = "";
+    public static final String apiSecret = "";
+    public static final String apiKey = "";
 
     // 环境治理的重要性  环保  人口老龄化  我爱我的祖国
-    public static final String NewQuestion = "环境治理的重要性";
+    public static final String NewQuestion = "";
 
     public static final Gson gson = new Gson();
 
@@ -217,5 +217,5 @@ public class BigModelNew extends WebSocketListener {
     class Text {
         String role;
         String content;
-    }
+    }*/
 }

@@ -18,9 +18,10 @@ public interface IUserService extends IService<User> {
     /**
      * 切换用户状态  删除方法共用
      * @param targetUserState  目标状态
+     * @param uId 用户id
      * @return 是否切换成功
      */
-    boolean switchUserState(Constants.UserState targetUserState);
+    UserResDto switchUserState(Constants.UserState targetUserState, Long uId);
 
 
     /**
@@ -38,14 +39,16 @@ public interface IUserService extends IService<User> {
     Integer queryMessageCntByUId(Long uId);
 
     /**
-     * 消费消息回答次数
+     * 消费消息
      * @param uId
      */
     void consumptionMessage(Long uId);
 
     /**
      * 用户创建方法  校验手机号是否唯一 默认创建普通用户  密码使用md5 加密
-     * @param user
+     *
+     * @param user  实体类应传输 username password phone
+     * @return service传输对象
      */
     UserResDto insertUser(User user);
 

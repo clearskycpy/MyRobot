@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author clearSky
+ */
 public class Message implements Serializable {
     @TableId(type = IdType.AUTO)
     private Long id;

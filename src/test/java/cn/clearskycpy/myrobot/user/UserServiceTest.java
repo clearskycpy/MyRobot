@@ -35,4 +35,9 @@ public class UserServiceTest {
         user.setPhone("12345678909");
         userService.insertUser(user);
     }
+
+    @Test
+    public void consumptionMessageTest() {
+        userService.consumptionMessage(1702515013501222912L);
+    }
 }

@@ -1,4 +1,4 @@
-package cn.clearskycpy.myrobot.handler;
+package cn.clearskycpy.myrobot.common.myexception;
 
 /**
  * @description:

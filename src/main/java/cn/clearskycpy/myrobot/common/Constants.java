@@ -11,6 +11,7 @@ public class Constants {
      * 可使用消息数默认值
      */
     public final static Integer MESSAGE_DEFAULT_VALUE = 100;
+
     /**
      * 响应状态码
      */
@@ -161,6 +162,94 @@ public class Constants {
 
         public String getInfo() {
             return info;
+        }
+    }
+
+    public enum TextRole {
+        /**
+         * 提问头
+         */
+        USER("user", "提问"),
+
+        /**
+         * 回答头
+         */
+        ASSISTANT("assistant", "回答")
+        ;
+        private String code;
+        private String info;
+
+        TextRole(String code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+    }
+
+    public enum ChatParameter {
+
+        /**
+         * chat 默认参数
+         */
+        DEFAULT("general", 0.5, 1024);
+
+        private String domain;
+        private Double temperature;
+        private Integer max_tokens;
+
+        ChatParameter(String domain, Double temperature, Integer max_tokens) {
+            this.domain = domain;
+            this.temperature = temperature;
+            this.max_tokens = max_tokens;
+        }
+
+        public String getDomain() {
+            return domain;
+        }
+
+        public Double getTemperature() {
+            return temperature;
+        }
+
+        public Integer getMax_tokens() {
+            return max_tokens;
+        }
+    }
+
+    public enum ChatExceptionType {
+        /**
+         *  未能得到消息
+         */
+        RESPONSE_FAILED(1,"api 响应失败"),
+        ;
+        /**
+         * 响应状态码
+         */
+        private Integer code;
+
+        /**
+         * 失败原因
+         */
+        private String message;
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        ChatExceptionType(Integer code, String message) {
+            this.code = code;
+            this.message = message;
         }
     }
 }

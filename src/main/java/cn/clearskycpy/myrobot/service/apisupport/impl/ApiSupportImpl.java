@@ -35,7 +35,7 @@ public class ApiSupportImpl implements IApiSupport {
     private StringBuffer message;
 
     @Override
-    public String askQuestion(String question) {
+    public String askQuestion(String reqJsonString) {
         try {
 //          初始化写入状态 , 清空原始字符串
             message.delete(0,message.length());
@@ -76,13 +76,13 @@ public class ApiSupportImpl implements IApiSupport {
                     "        },\n" +
                     "        {\n" +
                     "          \"role\": \"user\",\n" +
-                    "          \"content\": \"" + question + "\"\n" +
+                    "          \"content\": \"" + "question" + "\"\n" +
                     "        }\n" +
                     "      ]\n" +
                     "    }\n" +
                     "  }\n" +
                     "}";
-            webSocket.send(requestJson);
+            webSocket.send(reqJsonString);
 //            Thread.sleep(30000); // 等待30秒钟  ,  改变为判断是否读取完成
             // 等待异步操作完成
             myWebSocketUtil.waitForMessageCompletion();

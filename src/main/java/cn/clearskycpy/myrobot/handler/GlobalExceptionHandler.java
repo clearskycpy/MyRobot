@@ -1,6 +1,8 @@
 package cn.clearskycpy.myrobot.handler;
 
 import cn.clearskycpy.myrobot.common.Result;
+import cn.clearskycpy.myrobot.common.myexception.ChatException;
+import cn.clearskycpy.myrobot.common.myexception.UserException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,7 +32,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     *  处理唯一性字段发生重复的异常 （完整性约束返回异常）
+     *  用户service异常处理
      * @param e
      * @return
      */
@@ -38,4 +40,15 @@ public class GlobalExceptionHandler {
     public Result<String> exceptionHandler(UserException e){
         return Result.error(e.getMessage());
     }
+
+    @ExceptionHandler(ChatException.class)
+    public Result<String> exceptionHandler(ChatException e) {
+        return Result.error(e.getMessage());
+    }
+
+    /*@ExceptionHandler(Exception.class)
+    public Result<String> exceptionHandler(Exception e) {
+        return Result.error("异常情况无法读取数据");
+    }*/
+
 }

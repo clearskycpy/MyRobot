@@ -18,7 +18,7 @@ import java.io.IOException;
  * @date: 2023/9/19
  * @Copyright： clearskycpy.cn
  */
-@WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
+@WebFilter(filterName = "loginCheckFilter",urlPatterns = "/chat/*")
 @Slf4j
 
 public class LoginCheckFilter implements Filter {

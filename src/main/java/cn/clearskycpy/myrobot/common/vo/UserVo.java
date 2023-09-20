@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @date: 2023/9/18
  * @Copyright： clearskycpy.cn
  */
-@ApiModel("用户数据传输对象")
+@ApiModel("UserVo 用户数据传输对象")
 @Data
 public class UserVo implements Serializable {
 

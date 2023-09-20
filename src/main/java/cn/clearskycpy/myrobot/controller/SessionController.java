@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/chat/session")
 @Api(tags = "会话接口")
+@CrossOrigin
 public class SessionController {
 
     @Resource

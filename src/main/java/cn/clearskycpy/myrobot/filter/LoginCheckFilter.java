@@ -20,6 +20,7 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
 @Slf4j
+
 public class LoginCheckFilter implements Filter {
     /**
      * Spring提供的工具类,专门用于路径匹配
@@ -43,6 +44,7 @@ public class LoginCheckFilter implements Filter {
                 "/chat/user/login",
                 "/chat/user/create",
                 "/chat/user/sendCodeMessage",
+                "/doc.html"
         };
 
         //2.判断本次请求是否需要处理

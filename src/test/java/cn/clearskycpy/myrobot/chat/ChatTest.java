@@ -78,7 +78,7 @@ public class ChatTest {
     public void chatSend() throws Exception {
         ChatDto chatDto = new ChatDto();
         chatDto.setUId(1703569260854542336L);
-        chatDto.setQuestion("");
+        chatDto.setQuestion("RestController()注解中的 字符串类型的参数是什么");
         chatDto.setSessionId(1703571090342838272L);
         String message = chatService.sendMessage(chatDto);
         logger.info(message);

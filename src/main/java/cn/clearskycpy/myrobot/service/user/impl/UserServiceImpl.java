@@ -5,6 +5,7 @@ import cn.clearskycpy.myrobot.common.dto.UserResDto;
 import cn.clearskycpy.myrobot.common.po.User;
 import cn.clearskycpy.myrobot.common.support.ids.IIdGenerator;
 import cn.clearskycpy.myrobot.common.utils.MD5Utils;
+import cn.clearskycpy.myrobot.common.vo.UserVo;
 import cn.clearskycpy.myrobot.mapper.UserMapper;
 import cn.clearskycpy.myrobot.service.user.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -49,8 +50,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public void update(User user) {
         LambdaUpdateWrapper<User> userUpdateWrapper = new LambdaUpdateWrapper<>();
-        userUpdateWrapper.eq(User::getuId, user.getuId());
+        userUpdateWrapper.eq(User::getPhone,user.getPhone());
         userMapper.update(user,userUpdateWrapper);
+        return;
     }
 
     @Override
@@ -95,5 +97,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setUpdateTime(new Date());
         userMapper.insert(user);
         return new UserResDto(true);
+    }
+
+    @Override
+    public User queryUser(UserVo userVo) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getPhone,userVo.getPhone()).eq(User::getPassword,MD5Utils.encrypt(userVo.getPassword())).eq(User::getState,Constants.UserState.DOING.getCode());
+        return userMapper.selectOne(queryWrapper);
     }
 }

@@ -12,6 +12,9 @@ public class Constants {
      */
     public final static Integer MESSAGE_DEFAULT_VALUE = 100;
 
+
+    public final static String LOGIN = "chat_user";
+
     /**
      * 响应状态码
      */
@@ -24,6 +27,12 @@ public class Constants {
          * 失败
          */
         UN_ERROR("500", "未知失败"),
+
+        /**
+         * 验证码错误
+         */
+        CODE_ERROR("0001","验证码输入错误"),
+
         ILLEGAL_PARAMETER("0002", "非法参数"),
         INDEX_DUP("0003", "主键冲突"),
         NO_UPDATE("0004","SQL操作无更新");

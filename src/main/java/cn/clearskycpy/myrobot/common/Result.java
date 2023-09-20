@@ -15,7 +15,7 @@ public class Result<T> {
     private Boolean success;
 
     /**
-     * 错误码
+     * 状态码
      */
     private String code;
 
@@ -70,6 +70,12 @@ public class Result<T> {
         result.setSuccess(Boolean.TRUE);
         result.setMsg(msg);
         result.setData(data);
+        return result;
+    }
+
+    public static <T> Result<T> success() {
+        Result<T> result = new Result<>();
+        result.setSuccess(Boolean.TRUE);
         return result;
     }
 

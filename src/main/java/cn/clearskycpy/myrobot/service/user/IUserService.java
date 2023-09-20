@@ -3,6 +3,7 @@ package cn.clearskycpy.myrobot.service.user;
 import cn.clearskycpy.myrobot.common.Constants;
 import cn.clearskycpy.myrobot.common.dto.UserResDto;
 import cn.clearskycpy.myrobot.common.po.User;
+import cn.clearskycpy.myrobot.common.vo.UserVo;
 import cn.clearskycpy.myrobot.mapper.UserMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 //import com.baomidou.mybatisplus.service.IService;
@@ -25,7 +26,7 @@ public interface IUserService extends IService<User> {
 
 
     /**
-     * 更新用户信息
+     * 根据电话号码 更新用户信息
      * @param user
      */
     void update(User user);
@@ -51,5 +52,11 @@ public interface IUserService extends IService<User> {
      * @return service传输对象
      */
     UserResDto insertUser(User user);
+
+    /**
+     * 登录校验， 校验密码
+     * @return
+     */
+    User queryUser(UserVo userVo);
 
 }

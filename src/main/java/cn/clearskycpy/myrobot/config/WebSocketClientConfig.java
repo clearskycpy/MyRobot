@@ -6,6 +6,12 @@ import okhttp3.WebSocketListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @description: socket通信相关实例注入
+ * @author：clearSky
+ * @date: 2023/9/18
+ * @Copyright： clearskycpy.cn
+ */
 @Configuration
 public class WebSocketClientConfig {
     @Bean

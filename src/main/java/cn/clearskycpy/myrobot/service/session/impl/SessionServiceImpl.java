@@ -53,7 +53,7 @@ public class SessionServiceImpl extends ServiceImpl<SessionMapper, Session> impl
     @Override
     public List<Session> querySessionListByUId(Long uId) {
         LambdaQueryWrapper<Session> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Session::getuId, uId);
+        queryWrapper.eq(Session::getuId, uId).orderByAsc(Session::getSessionId);
         return sessionMapper.selectList(queryWrapper);
     }
 

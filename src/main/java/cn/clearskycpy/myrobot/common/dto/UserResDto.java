@@ -21,4 +21,20 @@ public class UserResDto {
     public UserResDto(boolean successState) {
         this.successState = successState;
     }
+
+    public boolean getSuccessState() {
+        return successState;
+    }
+
+    public void setSuccessState(boolean successState) {
+        this.successState = successState;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

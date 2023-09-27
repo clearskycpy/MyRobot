@@ -207,7 +207,12 @@ public class Constants {
         /**
          * chat 默认参数
          */
-        DEFAULT("general", 0.5, 1024);
+        DEFAULT("general", 0.5, 1024),
+
+        /**
+         * chat v2 参数
+         */
+        V2("generalv2", 0.5, 1024);
 
         private String domain;
         private Double temperature;

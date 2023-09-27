@@ -3,6 +3,7 @@ server:
 # 讯飞
 XF-data:
   hostUrl: https://spark-api.xf-yun.com/v1.1/chat
+  hostUrl2: https://spark-api.xf-yun.com/v2.1/chat
   appid: adecb169
   apiSecret: MThhZjZjYzU2Mzg5MWNjYjRhZWEyMWFk
   apiKey: 01b86b19dfd8c83be87418e7b42de780
@@ -21,7 +22,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-       id-type: AUTO # ASSIGN_ID
-# mybatis 相关配置， 也在mybatisplus中配置
+      id-type: AUTO # ASSIGN_ID
+  # mybatis 相关配置， 也在mybatisplus中配置
   mapper-locations: classpath:/mybatis/mapper/*.xml
 

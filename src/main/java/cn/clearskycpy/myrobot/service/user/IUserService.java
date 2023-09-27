@@ -1,11 +1,14 @@
 package cn.clearskycpy.myrobot.service.user;
 
 import cn.clearskycpy.myrobot.common.Constants;
+import cn.clearskycpy.myrobot.common.Result;
 import cn.clearskycpy.myrobot.common.dto.UserResDto;
 import cn.clearskycpy.myrobot.common.po.User;
 import cn.clearskycpy.myrobot.common.vo.UserVo;
 import cn.clearskycpy.myrobot.mapper.UserMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import javax.servlet.http.HttpSession;
 //import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -59,4 +62,7 @@ public interface IUserService extends IService<User> {
      */
     User queryUser(UserVo userVo);
 
+    Result sendcode(String phone, HttpSession session);
+
+    Result login(UserVo userVo, HttpSession httpSession);
 }

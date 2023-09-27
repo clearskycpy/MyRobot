@@ -4,15 +4,20 @@ import cn.clearskycpy.myrobot.common.Constants;
 import cn.clearskycpy.myrobot.common.Result;
 import cn.clearskycpy.myrobot.common.dto.UserResDto;
 import cn.clearskycpy.myrobot.common.po.User;
+import cn.clearskycpy.myrobot.common.utils.RegexUtils;
 import cn.clearskycpy.myrobot.common.vo.UserVo;
 import cn.clearskycpy.myrobot.service.user.IUserService;
-import cn.hutool.core.util.ObjectUtil;
 import io.swagger.annotations.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+
+import static cn.clearskycpy.myrobot.common.Constants.LOGIN_CODE_KEY;
 
 /**
  * @description:  用户接口
@@ -24,10 +29,19 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/chat/user")
 @Api(tags = "用户接口")
 @CrossOrigin
+@Slf4j
 public class UserController {
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
     @Resource
     private IUserService userService;
+
+    @ApiOperation(value = "验证码登录", notes = "用户提交手机号获取验证码")
+    @PostMapping("code")
+    public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
+        return userService.sendcode(phone,session);
+    }
 
     /**
      * 登录接口
@@ -38,20 +52,7 @@ public class UserController {
     public Result login(@RequestBody UserVo userVo,
                         @ApiIgnore
                         HttpSession httpSession){
-//        TODO 验证码验证
-        if(!queryCode(userVo.getMessageCode())) {
-            return Result.error(Constants.ResponseCode.CODE_ERROR.getCode(), Constants.ResponseCode.CODE_ERROR.getInfo());
-        }
-//        TODO 数据校验
-        User user = userService.queryUser(userVo);
-        if (user != null) {
-//           登录成功  将userID存入 session中
-            httpSession.setAttribute(Constants.LOGIN, user.getuId());
-            return Result.success(user);
-        }
-
-        //        登录校验
-        return Result.error(Constants.ResponseCode.UN_ERROR.getCode(),Constants.ResponseCode.UN_ERROR.getInfo());
+        return userService.login(userVo, httpSession);
     }
 
     /**
@@ -69,7 +70,6 @@ public class UserController {
 
 
     @ApiOperation(value = "用户更新", notes = "更新用户名和密码  :: 前端手机号无法改动")
-
     @PostMapping("/update")
     public Result update(@RequestBody UserVo userVo) {
         User user = new User();

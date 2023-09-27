@@ -12,6 +12,9 @@ public class Constants {
      */
     public final static Integer MESSAGE_DEFAULT_VALUE = 100;
 
+    public static final String LOGIN_CODE_KEY = "login:code:";
+    public static final Long LOGIN_CODE_TTL = 2L;
+
 
     public final static String LOGIN = "chat_user";
 

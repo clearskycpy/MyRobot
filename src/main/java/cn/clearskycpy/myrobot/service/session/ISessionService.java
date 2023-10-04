@@ -17,7 +17,7 @@ public interface ISessionService extends IService<Session> {
      * 插入一个session
      * @param session  会话实体类  包括sessionUId sessionName
      */
-    void insertSession(Session session);
+    Session insertSession(Session session);
 
     /**
      * 对 当前会话进行记录数加一

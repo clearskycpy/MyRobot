@@ -104,9 +104,9 @@ public class UserController {
         return Result.error(userResDto.getMessage());
     }
 
-    @GetMapping("/sendCodeMessage")
-    @ApiOperation(value = "发送短信验证码", notes = "默认123456,暂时未实现验证码发送")
-    public Result sendMessageCode() {
+    @GetMapping("/sendCodeMessage/{phone}")
+    @ApiOperation(value = "发送短信验证码 给当前提供的手机号", notes = "默认123456,暂时未实现验证码发送")
+    public Result sendMessageCode(@PathVariable("phone") String phone) {
         return Result.success();
     }
 

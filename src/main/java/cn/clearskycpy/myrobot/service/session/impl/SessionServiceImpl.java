@@ -31,12 +31,13 @@ public class SessionServiceImpl extends ServiceImpl<SessionMapper, Session> impl
     Map<Constants.Ids, IIdGenerator> idGeneratorMap;
 
     @Override
-    public void insertSession(Session session) {
+    public Session insertSession(Session session) {
         session.setCreateTime(new Date());
         session.setUpdateTime(new Date());
         session.setSessionId(idGeneratorMap.get(Constants.Ids.SnowFlake).nextId());
         session.setMessageCnt( 0 );
         sessionMapper.insert(session);
+        return session;
     }
 
     @Override

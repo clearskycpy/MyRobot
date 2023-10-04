@@ -68,8 +68,8 @@ public class SessionController {
         Session session = new Session();
         session.setuId(uId);
         session.setSessionName(sessionName);
-        sessionService.insertSession(session);
-        return Result.success();
+        Session session1 = sessionService.insertSession(session);
+        return Result.success(session1);
     }
 
 

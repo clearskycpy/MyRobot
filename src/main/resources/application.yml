@@ -10,6 +10,9 @@ XF-data:
 
 # 数据源配置
 spring:
+  jackson:
+    generator:
+      write_numbers_as_strings: true  # 防止Long类型超出
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/my_robot?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false   # 数据库连接URL
     username: root                       # 数据库用户名

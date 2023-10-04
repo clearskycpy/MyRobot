@@ -62,7 +62,19 @@ public interface IUserService extends IService<User> {
      */
     User queryUser(UserVo userVo);
 
+    /**
+     *
+     * @param phone
+     * @param session
+     * @return
+     */
     Result sendcode(String phone, HttpSession session);
 
+    /**
+     *  登录
+     * @param userVo
+     * @param httpSession
+     * @return
+     */
     Result login(UserVo userVo, HttpSession httpSession);
 }

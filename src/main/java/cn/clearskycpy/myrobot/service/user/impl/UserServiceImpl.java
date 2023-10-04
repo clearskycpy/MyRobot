@@ -138,10 +138,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Result login(UserVo userVo, HttpSession httpSession) {
-        //        TODO 验证码验证
-        /*if(!queryCode(userVo.getMessageCode())) {
-            return Result.error(Constants.ResponseCode.CODE_ERROR.getCode(), Constants.ResponseCode.CODE_ERROR.getInfo());
-        }*/// 1.校验手机号的格式
+        // 1.校验手机号的格式
         String phone = userVo.getPhone();
         if (RegexUtils.isPhoneInvalid(phone)) {
             // 2.如果不符合，返回错误信息
@@ -161,32 +158,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //5.判断用户是否存在
         if(user == null){
             //不存在，则创建
-            user =  createUserWithPhone(phone);
+            return Result.error("用户不存在");
         }
         // 6.登陆成功则删除验证码信息
         stringRedisTemplate.delete(LOGIN_CODE_KEY + phone);
-
-
-
-//        TODO 数据校验
+//      数据校验
         user = queryUser(userVo);
         if (user != null) {
 //           登录成功  将userID存入 session中
             httpSession.setAttribute(Constants.LOGIN, user.getuId());
             return Result.success(user);
         }
-
         //        登录校验
         return Result.error(Constants.ResponseCode.UN_ERROR.getCode(),Constants.ResponseCode.UN_ERROR.getInfo());
-    }
-
-    private User createUserWithPhone(String phone) {
-        //创建用户
-        User user = new User();
-        //设置手机号
-        user.setPhone(phone);
-        //保存到数据库
-        save(user);
-        return user;
     }
 }

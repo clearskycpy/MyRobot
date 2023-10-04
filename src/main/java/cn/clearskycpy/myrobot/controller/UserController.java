@@ -31,17 +31,12 @@ import static cn.clearskycpy.myrobot.common.Constants.LOGIN_CODE_KEY;
 @CrossOrigin
 @Slf4j
 public class UserController {
+
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
     @Resource
     private IUserService userService;
-
-    @ApiOperation(value = "验证码登录", notes = "用户提交手机号获取验证码")
-    @PostMapping("code")
-    public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
-        return userService.sendcode(phone,session);
-    }
 
     /**
      * 登录接口
@@ -56,7 +51,7 @@ public class UserController {
     }
 
     /**
-     * 登录接口
+     * 登出接口
      * @return
      */
     @ApiOperation(value = "用户登出", notes = "登出，session去除")
@@ -88,9 +83,12 @@ public class UserController {
     @ApiOperation(value = "用户注册", notes = "验证验证码，进行用户注册")
     @PostMapping("/create")
     public Result create(@RequestBody UserVo userVo) {
-//        TODO 验证码校验
-        if(!queryCode(userVo.getMessageCode())) {
-            return Result.error(Constants.ResponseCode.CODE_ERROR.getCode(), Constants.ResponseCode.CODE_ERROR.getInfo());
+//        验证码校验
+        String cacheCode = stringRedisTemplate.opsForValue().get(LOGIN_CODE_KEY + userVo.getPhone());
+        String code = userVo.getMessageCode();
+        if (cacheCode == null || !cacheCode.equals(code)) {
+            // 不一致则报错
+            return Result.success("验证码错误");
         }
         User user = new User();
         user.setUserName(userVo.getUserName());
@@ -105,9 +103,9 @@ public class UserController {
     }
 
     @GetMapping("/sendCodeMessage")
-    @ApiOperation(value = "发送短信验证码", notes = "默认123456,暂时未实现验证码发送")
-    public Result sendMessageCode() {
-        return Result.success();
+    @ApiOperation(value = "发送短信验证码", notes = "传入一个电话号码 使用阿里云短信发送短信验证码到手机")
+    public Result sendMessageCode(@RequestBody UserVo userVo, HttpSession session) {
+        return userService.sendcode(userVo.getPhone(), session);
     }
 
 
